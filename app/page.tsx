@@ -29,10 +29,8 @@ export default function LandingPage() {
       <nav className="fixed top-0 left-0 right-0 z-[2000] bg-white/70 backdrop-blur-md border-b border-slate-100 h-20">
         <div className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2.5 rounded-2xl shadow-lg shadow-blue-500/30">
-              <MapIcon className="text-white" size={24} />
-            </div>
-            <span className="text-2xl font-black text-slate-900 tracking-tighter uppercase">SIG Cafe</span>
+            <img src="/logo.png" alt="SIG Cafe Logo" className="w-12 h-12 object-contain drop-shadow-md transition-transform hover:scale-105" />
+            <span className="text-2xl font-black text-slate-900 tracking-tighter uppercase hidden sm:block">SIG Cafe</span>
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-500">
@@ -64,27 +62,46 @@ export default function LandingPage() {
       {/* Main Content */}
       <main className="flex-1 pt-20 flex flex-col">
         {/* Hero Section */}
-        <section className="px-6 py-16 md:py-24 text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-8 border border-blue-100">
-            <ShieldCheck size={14} /> Sistem Informasi Geografis Terverifikasi
+        <section className="relative px-6 py-20 md:py-32 text-center max-w-5xl mx-auto overflow-hidden">
+          {/* Subtle Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+
+          <div className="inline-flex items-center gap-2 bg-blue-50/80 backdrop-blur-sm text-blue-600 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest mb-10 border border-blue-200/50 shadow-sm hover:shadow-md transition-shadow">
+            <ShieldCheck size={16} /> Sistem Informasi Geografis Terverifikasi
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight mb-8">
-            Temukan Titik <span className="text-blue-600">Café Terbaik</span> di Sekitar Anda.
+            Temukan Titik <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Café Terbaik</span> di Sekitar Anda
           </h1>
-          <p className="text-lg md:text-xl text-slate-500 leading-relaxed mb-10 max-w-2xl mx-auto">
-            SIG Cafe memudahkan Anda mencari lokasi nongkrong yang strategis dengan data geografis yang akurat dan terverifikasi oleh tim kami.
+          <p className="text-lg md:text-xl text-slate-500 leading-relaxed mb-12 max-w-2xl mx-auto">
+            SIG Cafe memudahkan Anda mencari lokasi nongkrong yang strategis dengan data geografis yang akurat, real-time, dan terverifikasi oleh tim kurator kami.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="#map" className="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold hover:scale-105 transition-transform flex items-center gap-2 shadow-2xl shadow-slate-900/20">
-              Mulai Eksplorasi <Navigation2 size={18} className="rotate-45" />
+            <a href="#map" className="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold hover:-translate-y-1 transition-all flex items-center gap-3 shadow-xl shadow-slate-900/20 hover:shadow-2xl hover:shadow-slate-900/30">
+              Mulai Eksplorasi <Navigation2 size={20} className="rotate-45" />
             </a>
             {!session && (
-              <Link href="/register" className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-4 rounded-2xl font-bold hover:bg-blue-50 transition-all flex items-center gap-2">
-                <Store size={18} /> Daftar Sebagai Owner
+              <Link href="/register" className="bg-white text-slate-700 border border-slate-200 px-10 py-4 rounded-2xl font-bold hover:border-slate-300 hover:bg-slate-50 transition-all flex items-center gap-3 shadow-sm hover:shadow-md">
+                <Store size={20} className="text-blue-600" /> Daftar Sebagai Owner
               </Link>
             )}
-            <div className="bg-white px-8 py-4 rounded-2xl border border-slate-200 text-slate-600 font-bold flex items-center gap-2 shadow-sm">
-              <Coffee size={18} className="text-orange-500" /> {dbCafes.length}+ Lokasi Terdaftar
+          </div>
+          
+          {/* Stats Badges */}
+          <div className="mt-16 pt-10 border-t border-slate-100 flex flex-wrap justify-center gap-8">
+            <div className="flex items-center gap-3">
+              <div className="bg-orange-100 p-3 rounded-xl"><Coffee size={24} className="text-orange-600" /></div>
+              <div className="text-left">
+                <p className="text-2xl font-black text-slate-900">{dbCafes.length}+</p>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Lokasi Terdaftar</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-100 p-3 rounded-xl"><MapIcon size={24} className="text-blue-600" /></div>
+              <div className="text-left">
+                <p className="text-2xl font-black text-slate-900">Akurat</p>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Titik Pemetaan</p>
+              </div>
             </div>
           </div>
         </section>
@@ -111,10 +128,8 @@ export default function LandingPage() {
       {/* Simple Footer */}
       <footer className="bg-slate-50 py-12 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-center gap-3 grayscale opacity-50">
-            <div className="bg-slate-900 p-2 rounded-lg">
-              <MapIcon className="text-white" size={20} />
-            </div>
+          <div className="flex items-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="/logo.png" alt="SIG Cafe Logo" className="w-8 h-8 object-contain" />
             <span className="text-xl font-black text-slate-900 tracking-tighter uppercase">SIG Cafe</span>
           </div>
           <p className="text-slate-400 text-sm font-medium">
