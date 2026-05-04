@@ -47,12 +47,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className={`
         fixed inset-y-0 left-0 z-[1500] lg:relative lg:z-0
         ${isOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0 lg:w-20"} 
-        bg-slate-900 text-white transition-all duration-300 flex flex-col h-full shrink-0 shadow-2xl lg:shadow-none
+        bg-slate-950 text-white transition-all duration-300 flex flex-col h-full shrink-0 shadow-2xl lg:shadow-none border-r border-slate-800/50
       `}>
-        <div className="p-6 text-xl font-bold border-b border-slate-800 flex items-center gap-4 shrink-0 justify-between lg:justify-start">
-          <div className="flex items-center gap-4">
-            <div className="bg-blue-500 p-2 rounded-lg"><ListChecks size={24} /></div>
-            {(isOpen || typeof window !== 'undefined' && window.innerWidth < 1024) && <span className="truncate">SIG CAFE</span>}
+        <div className="p-6 text-xl font-bold border-b border-slate-800/50 flex items-center gap-4 shrink-0 justify-between lg:justify-start">
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="SIG Cafe Logo" className="w-9 h-9 object-contain drop-shadow-md brightness-0 invert" />
+            {(isOpen || typeof window !== 'undefined' && window.innerWidth < 1024) && <span className="truncate font-black tracking-widest text-lg">SIG CAFE</span>}
           </div>
           {/* Close button only on mobile */}
           <button onClick={() => setIsOpen(false)} className="lg:hidden text-slate-400 hover:text-white">
@@ -62,9 +62,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         <nav className="flex-1 mt-6 px-4 space-y-2 overflow-y-auto custom-scrollbar">
           {menuItems.map((item, index) => (
-            <a key={index} href={item.href} className="flex items-center gap-4 p-3 hover:bg-slate-800 rounded-lg transition-colors text-slate-300 hover:text-white whitespace-nowrap">
-              <div className="shrink-0">{item.icon}</div>
-              {(isOpen || typeof window !== 'undefined' && window.innerWidth < 1024) && <span>{item.label}</span>}
+            <a key={index} href={item.href} className="flex items-center gap-4 p-3 hover:bg-slate-800/80 rounded-xl transition-all text-slate-400 hover:text-white hover:shadow-sm whitespace-nowrap group">
+              <div className="shrink-0 group-hover:scale-110 transition-transform">{item.icon}</div>
+              {(isOpen || typeof window !== 'undefined' && window.innerWidth < 1024) && <span className="font-medium tracking-wide">{item.label}</span>}
             </a>
           ))}
         </nav>
@@ -91,7 +91,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <p className="text-sm font-bold text-slate-800">{userName}</p>
               <p className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">{role.replace('_', ' ')}</p>
             </div>
-            <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 font-bold shadow-sm border border-blue-200">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold shadow-md ring-2 ring-blue-50">
               {userName.charAt(0)}
             </div>
           </div>
